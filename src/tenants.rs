@@ -6,6 +6,8 @@ service_sdk::macros::use_my_no_sql_entity!();
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct TenantMyNoSqlEntity {
     pub domains: Vec<String>,
+    pub languages: Option<Vec<String>>,
+    pub default_language: Option<String>,
     pub enabled: bool,
 }
 
