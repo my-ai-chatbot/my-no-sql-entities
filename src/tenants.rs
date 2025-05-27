@@ -8,7 +8,8 @@ pub struct TenantMyNoSqlEntity {
     pub domains: Vec<String>,
     pub languages: Option<Vec<String>>,
     pub default_language: Option<String>,
-    pub audio_enabled: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub voice_enabled: Option<String>,
     pub enabled: bool,
 }
 
