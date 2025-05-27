@@ -8,6 +8,7 @@ pub struct TenantMyNoSqlEntity {
     pub domains: Vec<String>,
     pub languages: Option<Vec<String>>,
     pub default_language: Option<String>,
+    pub audio_enabled: Option<String>,
     pub enabled: bool,
 }
 
