@@ -9,7 +9,7 @@ pub struct TenantMyNoSqlEntity {
     pub languages: Option<Vec<String>>,
     pub default_language: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub voice_enabled: Option<String>,
+    pub voice_enabled: Option<bool>,
     pub enabled: bool,
 }
 
