@@ -13,6 +13,18 @@ impl TranslationsMyNoSqlEntity {
         format!("{}|{}", profile_id, language_id)
     }
 
+    pub fn get_profile_id(&self) -> &str {
+        let index = self.partition_key.find('|').unwrap();
+
+        &self.partition_key[..index]
+    }
+
+    pub fn get_lang(&self) -> &str {
+        let index = self.partition_key.find('|').unwrap();
+
+        &self.partition_key[index + 1..]
+    }
+
     pub fn get_translation_key(&self) -> &str {
         &self.row_key
     }
