@@ -5,6 +5,6 @@ use super::SparkPostSettingsModel;
 
 #[enum_of_my_no_sql_entity("product-settings")]
 #[derive(Serialize, Deserialize, Debug, Clone)]
-pub enum ProductSettings {
+pub enum ProductSettingsMyNoSqlEntity {
     SparkPostSettings(SparkPostSettingsModel),
 }
