@@ -7,4 +7,5 @@ use super::*;
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub enum IntegrationSettingsMyNoSqlEntity {
     SparkPostSettings(SparkPostSettingsModel),
+    OpenApiSettings(OpenApiSettingsModel),
 }
