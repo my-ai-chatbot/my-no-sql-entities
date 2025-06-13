@@ -14,7 +14,7 @@ pub struct LlmSettingsMyNoSqlEntity {
 }
 
 impl LlmSettingsMyNoSqlEntity {
-    pub const PARTITION_KEY: &'static str = "s";
+    pub const PARTITION_KEY: &'static str = "l";
 
     pub fn get_profile_id(&self) -> &str {
         &self.row_key
