@@ -22,7 +22,9 @@ pub struct SystemPromptMyNoSqlEntity {
 }
 
 impl SystemPromptMyNoSqlEntity {
-    pub const PARTITION_KEY: &'static str = "s";
+    pub fn get_model(&self) -> &str {
+        &self.partition_key
+    }
 
     pub fn get_id(&self) -> &str {
         &self.row_key
