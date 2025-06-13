@@ -1,3 +1,4 @@
+//Delete me at some point of time
 use serde::*;
 
 service_sdk::macros::use_my_no_sql_entity!();
