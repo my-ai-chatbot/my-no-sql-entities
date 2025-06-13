@@ -22,11 +22,11 @@ pub struct SystemPromptMyNoSqlEntity {
 }
 
 impl SystemPromptMyNoSqlEntity {
-    pub fn get_model(&self) -> &str {
+    pub fn get_id(&self) -> &str {
         &self.partition_key
     }
 
-    pub fn get_id(&self) -> &str {
+    pub fn get_model(&self) -> &str {
         &self.row_key
     }
 }
