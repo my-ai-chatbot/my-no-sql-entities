@@ -19,7 +19,7 @@ pub struct SystemPromptMyNoSqlEntity {
     pub presence_penalty: Option<f64>,
     pub frequency_penalty: Option<f64>,
     pub last_edited: i64,
-    pub think: Option<bool>,
+    pub disable_think: Option<bool>,
     pub who: String,
 }
 
