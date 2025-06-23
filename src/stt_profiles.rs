@@ -14,6 +14,6 @@ impl SttProfileMyNoSqlEntity {
     }
 
     pub fn get_lang_id(&self) -> &str {
-        &self.partition_key
+        &self.row_key
     }
 }
