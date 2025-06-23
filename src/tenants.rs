@@ -14,7 +14,7 @@ pub struct TenantMyNoSqlEntity {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub translations_profile: Option<String>,
     pub inventory_type: Option<String>,
-    pub sst_profile: Option<String>,
+    pub stt_profile: Option<String>,
     pub enabled: bool,
 }
 

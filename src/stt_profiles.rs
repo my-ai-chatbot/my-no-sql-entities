@@ -2,13 +2,13 @@ use serde::*;
 
 service_sdk::macros::use_my_no_sql_entity!();
 
-#[my_no_sql_entity("sst-config")]
+#[my_no_sql_entity("stt-config")]
 #[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct SstConfigMyNoSqlEntity {
+pub struct SttConfigMyNoSqlEntity {
     pub dest_id: String,
 }
 
-impl SstConfigMyNoSqlEntity {
+impl SttConfigMyNoSqlEntity {
     pub fn get_profile_id(&self) -> &str {
         &self.partition_key
     }
