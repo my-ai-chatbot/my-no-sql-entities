@@ -6,6 +6,7 @@ service_sdk::macros::use_my_no_sql_entity!();
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct SttProfileMyNoSqlEntity {
     pub dest_id: String,
+    pub fallback_dest_id: Option<String>,
 }
 
 impl SttProfileMyNoSqlEntity {
