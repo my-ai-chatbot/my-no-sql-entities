@@ -15,7 +15,7 @@ pub struct TenantMyNoSqlEntity {
     pub translations_profile: Option<String>,
     pub ai_model: Option<String>,
     pub inventory_type: Option<String>,
-    pub sst_config: Option<String>,
+    pub sst_profile: Option<String>,
     pub enabled: bool,
 }
 
