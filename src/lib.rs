@@ -5,5 +5,7 @@ pub use system_prompts::*;
 mod translations;
 pub use translations::*;
 pub mod integration_settings;
+mod sst_config;
+pub use sst_config::*;
 //mod llm_settings;
 //pub use llm_settings::*;
