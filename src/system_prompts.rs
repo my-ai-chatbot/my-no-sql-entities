@@ -12,6 +12,8 @@ pub struct SystemPromptMyNoSqlEntity {
 
     pub prompts: Option<HashMap<String, String>>,
 
+    pub prompts_voice: Option<HashMap<String, String>>,
+
     pub temperature: Option<u64>,
     pub top_p: Option<f64>,
     pub top_k: Option<i64>,
