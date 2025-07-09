@@ -9,5 +9,5 @@ mod stt_profiles;
 pub use stt_profiles::*;
 //mod llm_settings;
 //pub use llm_settings::*;
-mod project_gallery;
-pub use project_gallery::*;
+mod project_resources;
+pub use project_resources::*;
