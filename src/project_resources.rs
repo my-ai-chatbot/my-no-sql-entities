@@ -10,4 +10,5 @@ service_sdk::macros::use_my_no_sql_entity!();
 pub struct ProjectResourcesMyNoSqlEntity {
     pub images: Vec<String>,
     pub brochure: Option<String>,
+    pub brochure_thumbnail: Option<String>,
 }
