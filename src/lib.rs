@@ -11,3 +11,5 @@ pub use stt_profiles::*;
 //pub use llm_settings::*;
 mod project_resources;
 pub use project_resources::*;
+mod dg_project;
+pub use dg_project::*;
