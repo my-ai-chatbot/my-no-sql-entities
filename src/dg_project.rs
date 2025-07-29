@@ -11,6 +11,10 @@ pub struct DgProjectMyNoSqlEntity {
     pub project_type: String,
     pub project_url: String,
     pub amenities: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub country: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub city: Option<String>,
 }
 
 impl DgProjectMyNoSqlEntity {
