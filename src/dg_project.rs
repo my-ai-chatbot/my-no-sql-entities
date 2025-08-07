@@ -15,7 +15,8 @@ pub struct DgProjectMyNoSqlEntity {
     pub country: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub city: Option<String>,
-    pub units_amount: Option<u32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub units_amount: Option<u64>,
 }
 
 impl DgProjectMyNoSqlEntity {
