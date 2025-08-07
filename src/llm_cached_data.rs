@@ -8,3 +8,7 @@ service_sdk::macros::use_my_no_sql_entity!();
 pub struct LlmCacheDataMyNoSqlEntity {
     pub value: String,
 }
+
+impl LlmCacheDataMyNoSqlEntity {
+    pub const ROW_KEY_TOOL_CALLS: &'static str = "tool-calls";
+}
