@@ -7,9 +7,6 @@ service_sdk::macros::use_my_no_sql_entity!();
 #[my_no_sql_entity("system-prompts")]
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct SystemPromptMyNoSqlEntity {
-    #[deprecated]
-    pub value: Option<String>,
-
     pub prompts: Option<HashMap<String, String>>,
 
     pub prompts_voice: Option<HashMap<String, String>>,
