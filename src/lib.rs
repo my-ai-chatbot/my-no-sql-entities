@@ -15,3 +15,5 @@ mod dg_project;
 pub use dg_project::*;
 mod llm_cached_data;
 pub use llm_cached_data::*;
+mod widget_client;
+pub use widget_client::*;
