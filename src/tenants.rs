@@ -19,6 +19,7 @@ pub struct TenantMyNoSqlEntity {
     pub enabled: bool,
     pub llm_model: Option<String>,
     pub app_id: Option<String>,
+    pub dynamic_content: Option<bool>,
 }
 
 impl TenantMyNoSqlEntity {
