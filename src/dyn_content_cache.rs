@@ -6,7 +6,7 @@ service_sdk::macros::use_my_no_sql_entity!();
 // Partition Key - FullPath without query-string
 // Row Key - Scroll Position
 
-const POS_QUANT: u64 = 500; // Scroll position quantization, e.g., 500px
+const POS_QUANT: u64 = 100; // Scroll position quantization, e.g., 500px
 
 #[my_no_sql_entity("dyn-content-cache")]
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -35,9 +35,11 @@ mod test {
     #[test]
     fn test_round_position() {
         assert_eq!(super::round_scroll_position(0), 0);
-        assert_eq!(super::round_scroll_position(100), 0);
-        assert_eq!(super::round_scroll_position(400), 0);
+        assert_eq!(super::round_scroll_position(50), 0);
+        assert_eq!(super::round_scroll_position(100), 100);
+        assert_eq!(super::round_scroll_position(400), 400);
+        assert_eq!(super::round_scroll_position(410), 400);
         assert_eq!(super::round_scroll_position(500), 500);
-        assert_eq!(super::round_scroll_position(800), 500);
+        assert_eq!(super::round_scroll_position(800), 800);
     }
 }
