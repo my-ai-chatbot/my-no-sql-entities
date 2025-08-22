@@ -17,3 +17,5 @@ mod llm_cached_data;
 pub use llm_cached_data::*;
 mod widget_client;
 pub use widget_client::*;
+mod dyn_content_cache;
+pub use dyn_content_cache::*;
