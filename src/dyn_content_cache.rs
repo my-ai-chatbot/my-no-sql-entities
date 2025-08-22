@@ -15,15 +15,9 @@ pub struct DynContentCacheMyNoSqlEntity {
 }
 
 impl DynContentCacheMyNoSqlEntity {
-    pub fn new(scheme_domain: &str, path: &str, position: u64, value: String) -> Self {
-        let full_path = if path.starts_with('\\') {
-            format!("{}{}", scheme_domain, path)
-        } else {
-            format!("{}/{}", scheme_domain, path)
-        };
-
+    pub fn new(scheme_domain_path: String, position: u64, value: String) -> Self {
         Self {
-            partition_key: full_path,
+            partition_key: scheme_domain_path,
             row_key: round_scroll_position(position).to_string(),
             time_stamp: Default::default(),
             value,
