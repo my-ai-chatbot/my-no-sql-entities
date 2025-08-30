@@ -4,7 +4,6 @@ mod system_prompts;
 pub use system_prompts::*;
 mod translations;
 pub use translations::*;
-pub mod dg;
 pub mod integration_settings;
 mod stt_profiles;
 pub use stt_profiles::*;
