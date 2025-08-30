@@ -1,4 +1,4 @@
-// Description of AI
+// Description for AI
 // PARTITION_KEY - made as string concatenation as '{inventory_id}|{llm_model_id}'
 // ROW_KEY - id of record
 
