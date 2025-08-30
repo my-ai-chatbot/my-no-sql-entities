@@ -11,7 +11,6 @@ pub struct TenantMyNoSqlEntity {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub voice_enabled: Option<bool>,
     pub system_prompt_id: Option<String>,
-    pub tech_summary_system_prompt_id: Option<String>,
     pub summary_system_prompt_id: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub translations_profile: Option<String>,
