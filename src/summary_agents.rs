@@ -1,6 +1,8 @@
 // Description for AI
 // PARTITION_KEY - made as string concatenation as '{inventory_id}|{llm_model_id}'
 // ROW_KEY - id of record
+// tech_prompts - map of tech prompts used to generate technical summary which is a json file. Key is a language of the prompt;
+// prompts - map of prompts used to generate human readable text summary. Key is a language of the prompt;
 
 use std::collections::HashMap;
 
