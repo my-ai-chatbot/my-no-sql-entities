@@ -1,5 +1,6 @@
 use std::collections::HashMap;
 
+use chat_bot_common::{LlmAgentOtherSettings, llm_model_type::ChatBotLlmModel};
 use serde::*;
 
 service_sdk::macros::use_my_no_sql_entity!();
@@ -23,11 +24,48 @@ pub struct SystemPromptMyNoSqlEntity {
 }
 
 impl SystemPromptMyNoSqlEntity {
+    pub fn generate_row_key(model: ChatBotLlmModel) -> &'static str {
+        model.as_str()
+    }
+
     pub fn get_id(&self) -> &str {
         &self.partition_key
     }
 
-    pub fn get_model(&self) -> &str {
-        &self.row_key
+    pub fn get_model(&self) -> ChatBotLlmModel {
+        match ChatBotLlmModel::try_from_str(self.row_key.as_str()) {
+            Some(model) => model,
+            None => ChatBotLlmModel::default(),
+        }
+    }
+}
+
+impl LlmAgentOtherSettings for SystemPromptMyNoSqlEntity {
+    fn get_temperature(&self) -> Option<f64> {
+        self.temperature
+    }
+
+    fn get_top_p(&self) -> Option<f64> {
+        self.top_p
+    }
+
+    fn get_top_k(&self) -> Option<i64> {
+        self.top_k
+    }
+
+    fn get_n(&self) -> Option<i64> {
+        self.n
+    }
+
+    fn get_presence_penalty(&self) -> Option<f64> {
+        self.presence_penalty
+    }
+
+    fn get_frequency_penalty(&self) -> Option<f64> {
+        self.frequency_penalty
+    }
+
+    fn disable_think(&self) -> Option<bool> {
+        self.disable_think
     }
 }

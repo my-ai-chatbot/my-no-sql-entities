@@ -6,7 +6,9 @@
 
 use std::collections::HashMap;
 
-use chat_bot_common::{inventory_type::InventoryType, llm_model_type::ChatBotLlmModel};
+use chat_bot_common::{
+    LlmAgentOtherSettings, inventory_type::InventoryType, llm_model_type::ChatBotLlmModel,
+};
 use serde::*;
 
 service_sdk::macros::use_my_no_sql_entity!();
@@ -69,5 +71,35 @@ impl SummaryAgentMyNoSqlEntity {
 
     pub fn get_prompt_id(&self) -> &str {
         &self.row_key
+    }
+}
+
+impl LlmAgentOtherSettings for SummaryAgentMyNoSqlEntity {
+    fn get_temperature(&self) -> Option<f64> {
+        self.temperature
+    }
+
+    fn get_top_p(&self) -> Option<f64> {
+        self.top_p
+    }
+
+    fn get_top_k(&self) -> Option<i64> {
+        self.top_k
+    }
+
+    fn get_n(&self) -> Option<i64> {
+        self.n
+    }
+
+    fn get_presence_penalty(&self) -> Option<f64> {
+        self.presence_penalty
+    }
+
+    fn get_frequency_penalty(&self) -> Option<f64> {
+        self.frequency_penalty
+    }
+
+    fn disable_think(&self) -> Option<bool> {
+        self.disable_think
     }
 }
