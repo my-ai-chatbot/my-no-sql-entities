@@ -99,7 +99,7 @@ impl LlmAgentOtherSettings for SummaryAgentMyNoSqlEntity {
         self.frequency_penalty
     }
 
-    fn disable_think(&self) -> Option<bool> {
+    fn get_disable_think(&self) -> Option<bool> {
         self.disable_think
     }
 }

@@ -65,7 +65,7 @@ impl LlmAgentOtherSettings for SystemPromptMyNoSqlEntity {
         self.frequency_penalty
     }
 
-    fn disable_think(&self) -> Option<bool> {
+    fn get_disable_think(&self) -> Option<bool> {
         self.disable_think
     }
 }
