@@ -32,8 +32,8 @@ impl SummaryAgentMyNoSqlEntity {
         format!("{inventory_id}_{llm_model_id}")
     }
 
-    pub fn generate_row_key(id: String) -> String {
-        id
+    pub fn generate_row_key(prompt_id: &str) -> &str {
+        prompt_id
     }
 
     pub fn get_inventory_id(&self) -> &str {
@@ -47,7 +47,7 @@ impl SummaryAgentMyNoSqlEntity {
         parts.next().unwrap()
     }
 
-    pub fn get_id(&self) -> &str {
+    pub fn get_prompt_id(&self) -> &str {
         &self.row_key
     }
 }
