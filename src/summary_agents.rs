@@ -6,6 +6,7 @@
 
 use std::collections::HashMap;
 
+use chat_bot_common::{inventory_type::InventoryType, llm_model_type::ChatBotLlmModel};
 use serde::*;
 
 service_sdk::macros::use_my_no_sql_entity!();
@@ -28,23 +29,42 @@ pub struct SummaryAgentMyNoSqlEntity {
 }
 
 impl SummaryAgentMyNoSqlEntity {
-    pub fn generate_partition_key(inventory_id: &str, llm_model_id: &str) -> String {
-        format!("{inventory_id}_{llm_model_id}")
+    pub fn generate_partition_key(
+        inventory_type: InventoryType,
+        llm_model_id: ChatBotLlmModel,
+    ) -> String {
+        format!("{}|{}", inventory_type.as_str(), llm_model_id.as_str())
     }
 
     pub fn generate_row_key(prompt_id: &str) -> &str {
         prompt_id
     }
 
-    pub fn get_inventory_id(&self) -> &str {
+    pub fn get_inventory_type_and_llm_model(
+        &self,
+    ) -> Result<(InventoryType, ChatBotLlmModel), String> {
         let mut parts = self.partition_key.split('|');
-        parts.next().unwrap()
-    }
+        let inventory_type = match InventoryType::try_from_str(parts.next().unwrap()) {
+            Some(inventory_type) => inventory_type,
+            None => {
+                return Err(format!(
+                    "Invalid inventory type in partition key: {}",
+                    self.partition_key
+                ));
+            }
+        };
 
-    pub fn get_llm_model_id(&self) -> &str {
-        let mut parts = self.partition_key.split('|');
-        parts.next();
-        parts.next().unwrap()
+        let llm_model = match ChatBotLlmModel::try_from_str(parts.next().unwrap()) {
+            Some(llm_model) => llm_model,
+            None => {
+                return Err(format!(
+                    "Invalid LlmModel type in partition key: {}",
+                    self.partition_key
+                ));
+            }
+        };
+
+        Ok((inventory_type, llm_model))
     }
 
     pub fn get_prompt_id(&self) -> &str {
