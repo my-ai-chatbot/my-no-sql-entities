@@ -28,7 +28,7 @@ impl TranslationsMyNoSqlEntity {
 
         for itm in self.partition_key.chars() {
             if itm == '|' {
-                result += itm as usize;
+                result += 1;
             }
         }
 
