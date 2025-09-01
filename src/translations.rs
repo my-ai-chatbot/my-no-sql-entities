@@ -26,7 +26,7 @@ impl TranslationsMyNoSqlEntity {
     pub fn version(&self) -> usize {
         let mut result = 0;
 
-        for itm in self.translation.chars() {
+        for itm in self.partition_key.chars() {
             if itm == '|' {
                 result += itm as usize;
             }
