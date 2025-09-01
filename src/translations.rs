@@ -1,3 +1,4 @@
+use chat_bot_common::{inventory_type::InventoryType, languages::Language};
 use serde::*;
 
 service_sdk::macros::use_my_no_sql_entity!();
@@ -9,20 +10,35 @@ pub struct TranslationsMyNoSqlEntity {
 }
 
 impl TranslationsMyNoSqlEntity {
-    pub fn generate_partition_key(profile_id: &str, language_id: &str) -> String {
-        format!("{}|{}", profile_id, language_id)
+    pub fn generate_partition_key(
+        inventory_type: InventoryType,
+        profile_id: &str,
+        language_id: Language,
+    ) -> String {
+        format!(
+            "{}|{}|{}",
+            inventory_type.as_str(),
+            profile_id,
+            language_id.as_str()
+        )
     }
 
-    pub fn get_profile_id(&self) -> &str {
-        let index = self.partition_key.find('|').unwrap();
+    pub fn get_from_partition_key(&self) -> (InventoryType, &str, Language) {
+        let mut index = self.partition_key.split('|');
 
-        &self.partition_key[..index]
-    }
+        let first = index.next().unwrap();
+        let second = index.next().unwrap();
+        let third = index.next();
 
-    pub fn get_lang(&self) -> &str {
-        let index = self.partition_key.find('|').unwrap();
+        if let Some(third) = third {
+            return (
+                InventoryType::from_str(first),
+                second,
+                Language::from_str(third),
+            );
+        }
 
-        &self.partition_key[index + 1..]
+        (InventoryType::default(), first, Language::from_str(second))
     }
 
     pub fn get_translation_key(&self) -> &str {
