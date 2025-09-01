@@ -23,6 +23,18 @@ impl TranslationsMyNoSqlEntity {
         )
     }
 
+    pub fn version(&self) -> usize {
+        let mut result = 0;
+
+        for itm in self.translation.chars() {
+            if itm == '|' {
+                result += itm as usize;
+            }
+        }
+
+        result
+    }
+
     pub fn get_from_partition_key(&self) -> (InventoryType, &str, Language) {
         let mut index = self.partition_key.split('|');
 
