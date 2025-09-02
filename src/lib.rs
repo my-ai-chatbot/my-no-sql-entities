@@ -1,7 +1,7 @@
 mod tenants;
 pub use tenants::*;
-mod system_prompts;
-pub use system_prompts::*;
+mod agent_settings;
+pub use agent_settings::*;
 mod translations;
 pub use translations::*;
 pub mod integration_settings;
@@ -21,3 +21,4 @@ mod dyn_content_cache;
 pub use dyn_content_cache::*;
 mod summary_agents;
 pub use summary_agents::*;
+pub mod legacy;
