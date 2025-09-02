@@ -1,7 +1,11 @@
 use std::collections::HashMap;
 
-use chat_bot_common::{LlmAgentOtherSettings, llm_model_type::ChatBotLlmModel};
+use chat_bot_common::{
+    LlmAgentOtherSettings, inventory_type::InventoryType, llm_model_type::ChatBotLlmModel,
+};
 use serde::*;
+
+use crate::AgentSettingsMyNoSqlEntity;
 
 service_sdk::macros::use_my_no_sql_entity!();
 
@@ -36,6 +40,28 @@ impl SystemPromptMyNoSqlEntity {
         match ChatBotLlmModel::try_from_str(self.row_key.as_str()) {
             Some(model) => model,
             None => ChatBotLlmModel::default(),
+        }
+    }
+
+    pub fn to_agent(&self) -> AgentSettingsMyNoSqlEntity {
+        AgentSettingsMyNoSqlEntity {
+            partition_key: AgentSettingsMyNoSqlEntity::generate_partition_key(
+                InventoryType::DarGlobalRealEstate,
+                self.get_model(),
+            ),
+            row_key: AgentSettingsMyNoSqlEntity::generate_row_key(self.get_id()).to_string(),
+            time_stamp: Default::default(),
+            prompts: self.prompts.clone(),
+            prompts_voice: self.prompts_voice.clone(),
+            temperature: self.temperature,
+            top_p: self.top_p,
+            top_k: self.top_k,
+            n: self.n,
+            presence_penalty: self.presence_penalty,
+            frequency_penalty: self.frequency_penalty,
+            last_edited: self.last_edited,
+            disable_think: self.disable_think,
+            who: self.who.clone(),
         }
     }
 }
