@@ -8,7 +8,6 @@ service_sdk::macros::use_my_no_sql_entity!();
 #[my_no_sql_entity("car-inventory")]
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct CarInventoryMyNoSqlEntity {
-    pub brand: String,
     pub model: String,
     pub price: f64,
     pub year: i64,
