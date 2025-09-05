@@ -22,6 +22,10 @@ pub struct CarInventoryMyNoSqlEntity {
 }
 
 impl CarInventoryMyNoSqlEntity {
+    pub fn generate_partition_key(company_id: &str, car_brand: &str) -> String {
+        format!("{}|{}", company_id, car_brand)
+    }
+
     pub fn get_from_partition_key<'s>(&'s self) -> CrateInventoryFromPartitionKey<'s> {
         let mut split = self.partition_key.split('|');
 
@@ -32,6 +36,10 @@ impl CarInventoryMyNoSqlEntity {
             company_id,
             car_brand,
         }
+    }
+
+    pub fn get_id(&self) -> &str {
+        &self.row_key
     }
 }
 
