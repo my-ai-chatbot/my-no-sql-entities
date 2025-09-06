@@ -18,6 +18,9 @@ pub struct CarInventoryMyNoSqlEntity {
     pub fuel: Option<String>,
     pub transmission: Option<String>,
     pub options: Vec<String>,
+
+    pub image: String,
+    pub interior_images: Vec<String>,
 }
 
 impl CarInventoryMyNoSqlEntity {
