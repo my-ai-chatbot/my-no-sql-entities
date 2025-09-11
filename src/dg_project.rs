@@ -37,6 +37,10 @@ pub struct DgProjectMyNoSqlEntity {
     pub number_of_floors: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub location: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub brochure_url: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub gallery_images: Option<Vec<String>>,
 }
 
 impl DgProjectMyNoSqlEntity {
