@@ -28,6 +28,9 @@ pub struct DgProjectMyNoSqlEntity {
     pub why_invest: Option<Vec<String>>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub completion_date: Option<String>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub area_sqm: Option<String>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
