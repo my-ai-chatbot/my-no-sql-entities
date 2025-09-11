@@ -17,6 +17,10 @@ pub struct DgProjectMyNoSqlEntity {
     pub city: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub units_amount: Option<u64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub src_url: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub unit_names_to_map: Option<Vec<u8>>,
 }
 
 impl DgProjectMyNoSqlEntity {
