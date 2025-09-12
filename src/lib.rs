@@ -24,3 +24,5 @@ pub use summary_agents::*;
 pub mod car_inventory;
 mod dg_skipped_units;
 pub use dg_skipped_units::*;
+mod badges;
+pub use badges::*;
