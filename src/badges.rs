@@ -10,4 +10,5 @@ pub struct BadgesMyNoSqlEntity {
 }
 impl BadgesMyNoSqlEntity {
     pub const PARTITION_KEY_ADMIN: &'static str = "a";
+    pub const ROW_KEY_MISSED_DG_UNITS: &'static str = "mdu";
 }
