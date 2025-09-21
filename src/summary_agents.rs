@@ -7,7 +7,7 @@
 use std::collections::HashMap;
 
 use chat_bot_common::{
-    LlmAgentOtherSettings, inventory_type::InventoryType, llm_model_type::ChatBotLlmModel,
+    LlmAgentGenericSettings, inventory_type::InventoryType, llm_model_type::ChatBotLlmModel,
 };
 use serde::*;
 
@@ -21,12 +21,13 @@ pub struct SummaryAgentMyNoSqlEntity {
 
     pub temperature: Option<f64>,
     pub top_p: Option<f64>,
-    pub top_k: Option<i64>,
     pub n: Option<i64>,
     pub presence_penalty: Option<f64>,
     pub frequency_penalty: Option<f64>,
     pub last_edited: i64,
     pub disable_think: Option<bool>,
+    pub verbosity: Option<String>,
+    pub reasoning_effort: Option<String>,
     pub who: String,
 }
 
@@ -74,17 +75,13 @@ impl SummaryAgentMyNoSqlEntity {
     }
 }
 
-impl LlmAgentOtherSettings for SummaryAgentMyNoSqlEntity {
+impl LlmAgentGenericSettings for SummaryAgentMyNoSqlEntity {
     fn get_temperature(&self) -> Option<f64> {
         self.temperature
     }
 
     fn get_top_p(&self) -> Option<f64> {
         self.top_p
-    }
-
-    fn get_top_k(&self) -> Option<i64> {
-        self.top_k
     }
 
     fn get_n(&self) -> Option<i64> {
@@ -101,5 +98,15 @@ impl LlmAgentOtherSettings for SummaryAgentMyNoSqlEntity {
 
     fn get_disable_think(&self) -> Option<bool> {
         self.disable_think
+    }
+
+    fn get_reasoning_effort(&self) -> Option<chat_bot_common::Gpt5ReasoningEffort> {
+        let value = self.reasoning_effort.as_deref()?;
+        chat_bot_common::Gpt5ReasoningEffort::from_str(value)
+    }
+
+    fn get_verbosity(&self) -> Option<chat_bot_common::Gpt5VerbosityEffort> {
+        let value = self.reasoning_effort.as_deref()?;
+        chat_bot_common::Gpt5VerbosityEffort::from_str(value)
     }
 }

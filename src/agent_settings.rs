@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
 use chat_bot_common::{
-    LlmAgentOtherSettings,
+    LlmAgentGenericSettings,
     inventory_type::{self, InventoryType},
     llm_model_type::ChatBotLlmModel,
 };
@@ -66,17 +66,13 @@ impl AgentSettingsMyNoSqlEntity {
     }
 }
 
-impl LlmAgentOtherSettings for AgentSettingsMyNoSqlEntity {
+impl LlmAgentGenericSettings for AgentSettingsMyNoSqlEntity {
     fn get_temperature(&self) -> Option<f64> {
         self.temperature
     }
 
     fn get_top_p(&self) -> Option<f64> {
         self.top_p
-    }
-
-    fn get_top_k(&self) -> Option<i64> {
-        self.top_k
     }
 
     fn get_n(&self) -> Option<i64> {
@@ -93,5 +89,15 @@ impl LlmAgentOtherSettings for AgentSettingsMyNoSqlEntity {
 
     fn get_disable_think(&self) -> Option<bool> {
         self.disable_think
+    }
+
+    fn get_reasoning_effort(&self) -> Option<chat_bot_common::Gpt5ReasoningEffort> {
+        let value = self.reasoning_effort.as_deref()?;
+        chat_bot_common::Gpt5ReasoningEffort::from_str(value)
+    }
+
+    fn get_verbosity(&self) -> Option<chat_bot_common::Gpt5VerbosityEffort> {
+        let value = self.reasoning_effort.as_deref()?;
+        chat_bot_common::Gpt5VerbosityEffort::from_str(value)
     }
 }
