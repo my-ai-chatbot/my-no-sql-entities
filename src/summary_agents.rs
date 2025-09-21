@@ -102,11 +102,11 @@ impl LlmAgentGenericSettings for SummaryAgentMyNoSqlEntity {
 
     fn get_reasoning_effort(&self) -> Option<chat_bot_common::Gpt5ReasoningEffort> {
         let value = self.reasoning_effort.as_deref()?;
-        chat_bot_common::Gpt5ReasoningEffort::from_str(value)
+        chat_bot_common::Gpt5ReasoningEffort::try_from_str(value)
     }
 
     fn get_verbosity(&self) -> Option<chat_bot_common::Gpt5Verbosity> {
         let value = self.reasoning_effort.as_deref()?;
-        chat_bot_common::Gpt5Verbosity::from_str(value)
+        chat_bot_common::Gpt5Verbosity::try_from_str(value)
     }
 }
