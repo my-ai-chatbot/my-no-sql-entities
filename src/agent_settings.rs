@@ -96,8 +96,8 @@ impl LlmAgentGenericSettings for AgentSettingsMyNoSqlEntity {
         chat_bot_common::Gpt5ReasoningEffort::from_str(value)
     }
 
-    fn get_verbosity(&self) -> Option<chat_bot_common::Gpt5VerbosityEffort> {
+    fn get_verbosity(&self) -> Option<chat_bot_common::Gpt5Verbosity> {
         let value = self.reasoning_effort.as_deref()?;
-        chat_bot_common::Gpt5VerbosityEffort::from_str(value)
+        chat_bot_common::Gpt5Verbosity::from_str(value)
     }
 }
