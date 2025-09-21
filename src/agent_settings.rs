@@ -24,6 +24,8 @@ pub struct AgentSettingsMyNoSqlEntity {
     pub frequency_penalty: Option<f64>,
     pub last_edited: i64,
     pub disable_think: Option<bool>,
+    pub verbosity: Option<String>,
+    pub reasoning_effort: Option<String>,
     pub who: String,
 }
 
