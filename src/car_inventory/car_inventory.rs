@@ -19,7 +19,6 @@ pub struct CarInventoryMyNoSqlEntity {
     pub transmission: Option<String>,
     pub options: Vec<String>,
     pub color: String,
-    pub image: String,
     pub interior_images: Vec<String>,
     pub exterior_images: Option<Vec<String>>,
 }
