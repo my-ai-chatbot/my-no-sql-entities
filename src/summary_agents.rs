@@ -25,7 +25,7 @@ pub struct SummaryAgentMyNoSqlEntity {
     pub presence_penalty: Option<f64>,
     pub frequency_penalty: Option<f64>,
     pub last_edited: i64,
-    pub disable_think: Option<bool>,
+    pub think: Option<bool>,
     pub verbosity: Option<String>,
     pub reasoning_effort: Option<String>,
     pub who: String,
@@ -96,8 +96,8 @@ impl LlmAgentGenericSettings for SummaryAgentMyNoSqlEntity {
         self.frequency_penalty
     }
 
-    fn get_disable_think(&self) -> Option<bool> {
-        self.disable_think
+    fn get_think(&self) -> bool {
+        self.think.unwrap_or_default()
     }
 
     fn get_reasoning_effort(&self) -> Option<chat_bot_common::Gpt5ReasoningEffort> {
