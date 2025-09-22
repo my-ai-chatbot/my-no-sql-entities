@@ -17,13 +17,20 @@ pub struct AgentSettingsMyNoSqlEntity {
     pub prompts_voice: Option<HashMap<String, String>>,
 
     pub temperature: Option<f64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub top_p: Option<f64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub n: Option<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub presence_penalty: Option<f64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub frequency_penalty: Option<f64>,
     pub last_edited: i64,
+
     pub think: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub verbosity: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub reasoning_effort: Option<String>,
     pub who: String,
 }
