@@ -21,6 +21,7 @@ pub struct CarInventoryMyNoSqlEntity {
     pub color: String,
     pub interior_images: Vec<String>,
     pub exterior_images: Option<Vec<String>>,
+    pub monthly_payments: Option<Vec<f64>>,
 }
 
 impl CarInventoryMyNoSqlEntity {
