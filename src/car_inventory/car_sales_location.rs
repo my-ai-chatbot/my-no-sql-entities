@@ -9,7 +9,7 @@ service_sdk::macros::use_my_no_sql_entity!();
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct CarSalesLocationMyNoSqlEntity {
     pub title: String,
-    pub description: String,
+    pub description: Option<String>,
     pub address: String,
 
     pub city: String,
