@@ -10,6 +10,7 @@ service_sdk::macros::use_my_no_sql_entity!();
 pub struct CarSalesLocationMyNoSqlEntity {
     pub title: String,
     pub address: String,
+    pub city: String,
     pub sale_phone: Option<String>,
     pub service_phone: Option<String>,
     pub working_hours: Vec<WorkingHoursModel>,
