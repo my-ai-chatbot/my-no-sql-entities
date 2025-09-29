@@ -34,6 +34,10 @@ impl CarSalesLocationMyNoSqlEntity {
             car_brand,
         }
     }
+
+    pub fn get_id(&self) -> &str {
+        self.row_key.as_str()
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
