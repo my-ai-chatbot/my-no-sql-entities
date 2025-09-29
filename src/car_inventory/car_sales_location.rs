@@ -18,8 +18,31 @@ pub struct CarSalesLocationMyNoSqlEntity {
     pub longitude: String,
 }
 
+impl CarSalesLocationMyNoSqlEntity {
+    pub fn generate_partition_key(company_id: &str, car_brand: &str) -> String {
+        format!("{}|{}", company_id, car_brand)
+    }
+
+    pub fn get_from_partition_key<'s>(&'s self) -> CarSalesLocationFromPartitionKey<'s> {
+        let mut split = self.partition_key.split('|');
+
+        let company_id = split.next().unwrap_or_default();
+        let car_brand = split.next().unwrap_or_default();
+
+        CarSalesLocationFromPartitionKey {
+            company_id,
+            car_brand,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct WorkingHoursModel {
     pub dow: String,
     pub info: String,
+}
+
+pub struct CarSalesLocationFromPartitionKey<'s> {
+    pub company_id: &'s str,
+    pub car_brand: &'s str,
 }
