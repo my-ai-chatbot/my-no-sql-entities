@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 use serde::*;
 
 service_sdk::macros::use_my_no_sql_entity!();
@@ -8,17 +10,7 @@ service_sdk::macros::use_my_no_sql_entity!();
 #[my_no_sql_entity("car-sales-location")]
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct CarSalesLocationMyNoSqlEntity {
-    pub title: String,
-    pub description: Option<String>,
-    pub address: String,
-
-    pub city: String,
-    pub sale_phone: Option<String>,
-    pub service_phone: Option<String>,
-    pub working_hours: Vec<WorkingHoursModel>,
-    pub image: String,
-    pub latitude: String,
-    pub longitude: String,
+    pub data: HashMap<String, LocationInfoJsonEntity>,
 }
 
 impl CarSalesLocationMyNoSqlEntity {
@@ -41,6 +33,20 @@ impl CarSalesLocationMyNoSqlEntity {
     pub fn get_id(&self) -> &str {
         self.row_key.as_str()
     }
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct LocationInfoJsonEntity {
+    pub title: String,
+    pub description: Option<String>,
+    pub address: String,
+    pub city: String,
+    pub sale_phone: Option<String>,
+    pub service_phone: Option<String>,
+    pub working_hours: Vec<WorkingHoursModel>,
+    pub image: String,
+    pub latitude: String,
+    pub longitude: String,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
