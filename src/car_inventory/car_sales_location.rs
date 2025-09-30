@@ -1,5 +1,6 @@
 use std::collections::HashMap;
 
+use chat_bot_common::languages::Language;
 use serde::*;
 
 service_sdk::macros::use_my_no_sql_entity!();
@@ -10,7 +11,7 @@ service_sdk::macros::use_my_no_sql_entity!();
 #[my_no_sql_entity("car-sales-location")]
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct CarSalesLocationMyNoSqlEntity {
-    pub data: HashMap<String, LocationInfoJsonEntity>,
+    pub data: HashMap<Language, LocationInfoJsonEntity>,
 }
 
 impl CarSalesLocationMyNoSqlEntity {
@@ -32,6 +33,10 @@ impl CarSalesLocationMyNoSqlEntity {
 
     pub fn get_id(&self) -> &str {
         self.row_key.as_str()
+    }
+
+    pub fn get_en(&self) -> &LocationInfoJsonEntity {
+        self.data.get(&Language::En).unwrap()
     }
 }
 
