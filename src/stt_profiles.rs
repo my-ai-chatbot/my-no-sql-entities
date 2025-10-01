@@ -1,3 +1,4 @@
+use chat_bot_common::languages::Language;
 use serde::*;
 
 service_sdk::macros::use_my_no_sql_entity!();
@@ -14,7 +15,7 @@ impl SttProfileMyNoSqlEntity {
         &self.partition_key
     }
 
-    pub fn get_lang_id(&self) -> &str {
-        &self.row_key
+    pub fn get_lang_id(&self) -> Language {
+        Language::from_str(&self.row_key)
     }
 }
