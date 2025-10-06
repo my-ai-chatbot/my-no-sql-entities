@@ -22,8 +22,8 @@ pub struct TenantMyNoSqlEntity {
     pub app_id: Option<String>,
     pub dynamic_content: Option<bool>,
     pub authorized_paths: Option<Vec<String>>,
-    pub summary_every_round_trip: Option<u64>,
-    pub request_trim_history: Option<u64>,
+    pub summary_every_round_trip: Option<usize>,
+    pub request_trim_history_round_trip: Option<usize>,
 }
 
 impl TenantMyNoSqlEntity {
@@ -37,7 +37,7 @@ impl TenantMyNoSqlEntity {
         self.summary_every_round_trip.unwrap_or(3)
     }
 
-    pub fn get_request_trim_history(&self) -> usize {
-        self.request_trim_history.unwrap_or(10)
+    pub fn get_request_trim_history_round_trip(&self) -> usize {
+        self.request_trim_history_round_trip.unwrap_or(10)
     }
 }
