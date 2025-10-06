@@ -22,8 +22,8 @@ pub struct TenantMyNoSqlEntity {
     pub app_id: Option<String>,
     pub dynamic_content: Option<bool>,
     pub authorized_paths: Option<Vec<String>>,
-    pub summary_every_round_trip: Option<usize>,
-    pub request_trim_history: Option<usize>,
+    pub summary_every_round_trip: Option<u64>,
+    pub request_trim_history: Option<u64>,
 }
 
 impl TenantMyNoSqlEntity {
