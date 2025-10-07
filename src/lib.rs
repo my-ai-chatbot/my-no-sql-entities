@@ -26,3 +26,5 @@ mod dg_skipped_units;
 pub use dg_skipped_units::*;
 mod badges;
 pub use badges::*;
+mod chat_test;
+pub use chat_test::*;
