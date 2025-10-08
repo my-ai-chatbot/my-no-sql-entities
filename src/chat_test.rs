@@ -10,6 +10,12 @@ pub struct ChatTestMyNoSqlEntity {
     pub disabled: bool,
 }
 
+impl ChatTestMyNoSqlEntity {
+    pub fn get_id(&self) -> &str {
+        &self.row_key
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, Clone, Copy)]
 pub enum ChatHistoryRole {
     User,
