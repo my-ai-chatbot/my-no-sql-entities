@@ -1,3 +1,4 @@
+use chat_bot_common::inventory_type::InventoryType;
 use serde::*;
 service_sdk::macros::use_my_no_sql_entity!();
 
@@ -12,6 +13,14 @@ pub struct ChatTestMyNoSqlEntity {
 }
 
 impl ChatTestMyNoSqlEntity {
+    pub fn generate_partition_key(inventory_type: InventoryType) -> &'static str {
+        inventory_type.as_str()
+    }
+
+    pub fn get_inventory_type(&self) -> InventoryType {
+        InventoryType::from_str(&self.partition_key)
+    }
+
     pub fn get_id(&self) -> &str {
         &self.row_key
     }
