@@ -10,8 +10,11 @@ pub struct ChatTestMyNoSqlEntity {
     pub result_to_assert: String,
     pub disabled: bool,
     pub active_process: Option<String>,
+    #[serde(default)]
     pub time_zone: String,
+    #[serde(default)]
     pub time_offset: String,
+    #[serde(default)]
     pub country_by_ip: String,
 }
 
