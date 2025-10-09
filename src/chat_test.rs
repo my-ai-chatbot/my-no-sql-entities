@@ -54,4 +54,6 @@ pub struct ActiveProcess {
 pub struct LastResult {
     pub ok: bool,
     pub message: String,
+    #[serde(default)]
+    pub assert_result: String,
 }
