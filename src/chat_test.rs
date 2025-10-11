@@ -20,7 +20,7 @@ pub struct ChatTestMyNoSqlEntity {
     #[serde(default)]
     pub sys_prompt: String,
     #[serde(default)]
-    pub assert_message: String,
+    pub additional_instruction: String,
 }
 
 impl ChatTestMyNoSqlEntity {
