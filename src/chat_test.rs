@@ -17,6 +17,10 @@ pub struct ChatTestMyNoSqlEntity {
     pub time_offset: String,
     #[serde(default)]
     pub country_by_ip: String,
+    #[serde(default)]
+    pub sys_prompt: String,
+    #[serde(default)]
+    pub assert_message: String,
 }
 
 impl ChatTestMyNoSqlEntity {
