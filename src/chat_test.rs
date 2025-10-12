@@ -1,5 +1,7 @@
-use chat_bot_common::inventory_type::InventoryType;
+use chat_bot_common::{inventory_type::InventoryType, llm_model_type::ChatBotLlmModel};
 use serde::*;
+
+use crate::llm::LlmGeneralSettings;
 service_sdk::macros::use_my_no_sql_entity!();
 
 #[my_no_sql_entity("chat-tests")]
@@ -21,6 +23,10 @@ pub struct ChatTestMyNoSqlEntity {
     pub sys_prompt: String,
     #[serde(default)]
     pub additional_instruction: String,
+    #[serde(default)]
+    pub llm_model: ChatBotLlmModel,
+    #[serde(default)]
+    pub assert_llm_settings: LlmGeneralSettings,
 }
 
 impl ChatTestMyNoSqlEntity {
