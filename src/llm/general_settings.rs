@@ -11,7 +11,6 @@ pub struct LlmGeneralSettings {
     pub presence_penalty: Option<f64>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub frequency_penalty: Option<f64>,
-    pub last_edited: i64,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub think: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]

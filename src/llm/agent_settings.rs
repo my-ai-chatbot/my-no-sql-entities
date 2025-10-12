@@ -81,7 +81,6 @@ impl AgentSettingsMyNoSqlEntity {
             n: self.n,
             presence_penalty: self.presence_penalty,
             frequency_penalty: self.frequency_penalty,
-            last_edited: self.last_edited,
             think: self.think,
             verbosity: match self.verbosity.as_deref() {
                 Some(value) => Gpt5Verbosity::try_from_str(value),
