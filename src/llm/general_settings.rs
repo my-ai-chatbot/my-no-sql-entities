@@ -1,4 +1,3 @@
-use chat_bot_common::*;
 use serde::*;
 
 #[derive(Serialize, Deserialize, Debug, Clone, Default)]
@@ -16,11 +15,12 @@ pub struct LlmGeneralSettings {
 
     pub think: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub verbosity: Option<String>,
+    pub verbosity: Option<chat_bot_common::Gpt5Verbosity>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub reasoning_effort: Option<String>,
+    pub reasoning_effort: Option<chat_bot_common::Gpt5ReasoningEffort>,
 }
 
+/*
 pub trait LlmAgentGenericSettings {
     fn get_temperature(&self) -> Option<f64>;
     fn get_top_p(&self) -> Option<f64>;
@@ -67,3 +67,4 @@ impl LlmAgentGenericSettings for LlmGeneralSettings {
         chat_bot_common::Gpt5Verbosity::try_from_str(value)
     }
 }
+ */

@@ -6,10 +6,10 @@
 
 use std::collections::HashMap;
 
-use chat_bot_common::{
-    LlmAgentGenericSettings, inventory_type::InventoryType, llm_model_type::ChatBotLlmModel,
-};
+use chat_bot_common::{inventory_type::InventoryType, llm_model_type::*, *};
 use serde::*;
+
+use super::LlmGeneralSettings;
 
 service_sdk::macros::use_my_no_sql_entity!();
 
@@ -80,8 +80,29 @@ impl SummaryAgentMyNoSqlEntity {
     pub fn get_prompt_id(&self) -> &str {
         &self.row_key
     }
+
+    pub fn get_llm_settings(&self) -> LlmGeneralSettings {
+        LlmGeneralSettings {
+            temperature: self.temperature,
+            top_p: self.top_p,
+            n: self.n,
+            presence_penalty: self.presence_penalty,
+            frequency_penalty: self.frequency_penalty,
+            last_edited: self.last_edited,
+            think: self.think,
+            verbosity: match self.verbosity.as_deref() {
+                Some(value) => Gpt5Verbosity::try_from_str(value),
+                None => None,
+            },
+            reasoning_effort: match self.reasoning_effort.as_deref() {
+                Some(value) => Gpt5ReasoningEffort::try_from_str(value),
+                None => None,
+            },
+        }
+    }
 }
 
+/*
 impl LlmAgentGenericSettings for SummaryAgentMyNoSqlEntity {
     fn get_temperature(&self) -> Option<f64> {
         self.temperature
@@ -117,3 +138,4 @@ impl LlmAgentGenericSettings for SummaryAgentMyNoSqlEntity {
         chat_bot_common::Gpt5Verbosity::try_from_str(value)
     }
 }
+ */
