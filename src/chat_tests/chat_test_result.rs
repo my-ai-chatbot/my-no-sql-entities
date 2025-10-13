@@ -9,20 +9,6 @@ service_sdk::macros::use_my_no_sql_entity!();
 pub struct ChatTestResultsMyNoSqlEntity {
     pub active_process: Option<ActiveProcess>,
     pub last_result: Option<LastResult>,
-    #[serde(default)]
-    pub time_zone: String,
-    #[serde(default)]
-    pub time_offset: String,
-    #[serde(default)]
-    pub country_by_ip: String,
-    #[serde(default)]
-    pub sys_prompt: String,
-    #[serde(default)]
-    pub additional_instruction: String,
-    #[serde(default)]
-    pub llm_model: ChatBotLlmModel,
-    #[serde(default)]
-    pub assert_llm_settings: LlmGeneralSettings,
     pub status: Option<ChatTestStatus>,
 }
 #[derive(Serialize, Deserialize, Debug, Clone, Copy)]
