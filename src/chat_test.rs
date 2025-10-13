@@ -27,6 +27,14 @@ pub struct ChatTestMyNoSqlEntity {
     pub llm_model: ChatBotLlmModel,
     #[serde(default)]
     pub assert_llm_settings: LlmGeneralSettings,
+    pub status: Option<ChatTestStatus>,
+}
+#[derive(Serialize, Deserialize, Debug, Clone, Copy)]
+pub enum ChatTestStatus {
+    InQueue,
+    InProgress,
+    Success,
+    Fail,
 }
 
 impl ChatTestMyNoSqlEntity {
