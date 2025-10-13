@@ -49,7 +49,6 @@ pub struct ActiveProcess {
 }
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct LastResult {
-    pub ok: bool,
     pub message: String,
     #[serde(default)]
     pub assert_result: String,
