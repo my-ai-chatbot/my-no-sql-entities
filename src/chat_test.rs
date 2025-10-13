@@ -37,6 +37,15 @@ pub enum ChatTestStatus {
     Fail,
 }
 
+impl ChatTestStatus {
+    pub fn is_in_progress(&self) -> bool {
+        match self {
+            Self::InProgress => true,
+            _ => false,
+        }
+    }
+}
+
 impl ChatTestMyNoSqlEntity {
     pub fn generate_partition_key(inventory_type: InventoryType) -> &'static str {
         inventory_type.as_str()
