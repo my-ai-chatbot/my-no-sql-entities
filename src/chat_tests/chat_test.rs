@@ -11,8 +11,6 @@ pub struct ChatTestMyNoSqlEntity {
     pub chat_history: Vec<ChatHistoryEvent>,
     pub result_to_assert: String,
     pub disabled: bool,
-    pub active_process: Option<ActiveProcess>,
-    pub last_result: Option<LastResult>,
     #[serde(default)]
     pub time_zone: String,
     #[serde(default)]
@@ -27,23 +25,6 @@ pub struct ChatTestMyNoSqlEntity {
     pub llm_model: ChatBotLlmModel,
     #[serde(default)]
     pub assert_llm_settings: LlmGeneralSettings,
-    pub status: Option<ChatTestStatus>,
-}
-#[derive(Serialize, Deserialize, Debug, Clone, Copy)]
-pub enum ChatTestStatus {
-    InQueue,
-    InProgress,
-    Success,
-    Fail,
-}
-
-impl ChatTestStatus {
-    pub fn is_in_progress(&self) -> bool {
-        match self {
-            Self::InProgress => true,
-            _ => false,
-        }
-    }
 }
 
 impl ChatTestMyNoSqlEntity {
@@ -70,17 +51,4 @@ pub enum ChatHistoryRole {
 pub struct ChatHistoryEvent {
     pub role: ChatHistoryRole,
     pub text: String,
-}
-
-#[derive(Debug, Serialize, Deserialize, Clone)]
-pub struct ActiveProcess {
-    pub started: i64,
-    pub process_id: String,
-}
-#[derive(Debug, Serialize, Deserialize, Clone)]
-pub struct LastResult {
-    pub ok: bool,
-    pub message: String,
-    #[serde(default)]
-    pub assert_result: String,
 }

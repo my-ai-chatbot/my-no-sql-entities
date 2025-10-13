@@ -22,6 +22,6 @@ mod dg_skipped_units;
 pub use dg_skipped_units::*;
 mod badges;
 pub use badges::*;
-mod chat_test;
-pub use chat_test::*;
+mod chat_tests;
+pub use chat_tests::*;
 pub mod llm;
