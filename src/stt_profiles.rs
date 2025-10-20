@@ -9,6 +9,7 @@ pub struct SttProfileMyNoSqlEntity {
     pub primary: String,
     pub secondary: Option<String>,
     pub chat_id: Option<String>,
+    pub version: Option<String>,
 }
 
 impl SttProfileMyNoSqlEntity {
