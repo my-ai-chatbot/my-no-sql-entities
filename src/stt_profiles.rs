@@ -8,8 +8,8 @@ service_sdk::macros::use_my_no_sql_entity!();
 pub struct SttProfileMyNoSqlEntity {
     pub primary: String,
     pub secondary: Option<String>,
-    pub chat_id: Option<String>,
-    pub version: Option<String>,
+    pub prompt_id: Option<String>,
+    pub prompt_version: Option<String>,
 }
 
 impl SttProfileMyNoSqlEntity {
