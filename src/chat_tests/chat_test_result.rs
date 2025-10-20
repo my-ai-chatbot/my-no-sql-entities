@@ -1,7 +1,6 @@
-use chat_bot_common::{inventory_type::InventoryType, llm_model_type::ChatBotLlmModel};
+use chat_bot_common::inventory_type::InventoryType;
 use serde::*;
 
-use crate::llm::LlmGeneralSettings;
 service_sdk::macros::use_my_no_sql_entity!();
 
 #[my_no_sql_entity("chat-test-results")]
