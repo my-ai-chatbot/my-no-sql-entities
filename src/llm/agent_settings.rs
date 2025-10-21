@@ -34,6 +34,10 @@ pub struct AgentSettingsMyNoSqlEntity {
     pub verbosity: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub reasoning_effort: Option<String>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub mcp_label: Option<String>,
+
     pub who: String,
 }
 
@@ -93,41 +97,3 @@ impl AgentSettingsMyNoSqlEntity {
         }
     }
 }
-
-/*
-impl LlmAgentGenericSettings for AgentSettingsMyNoSqlEntity {
-    fn get_temperature(&self) -> Option<f64> {
-        self.temperature
-    }
-
-    fn get_top_p(&self) -> Option<f64> {
-        self.top_p
-    }
-
-    fn get_n(&self) -> Option<i64> {
-        self.n
-    }
-
-    fn get_presence_penalty(&self) -> Option<f64> {
-        self.presence_penalty
-    }
-
-    fn get_frequency_penalty(&self) -> Option<f64> {
-        self.frequency_penalty
-    }
-
-    fn get_think(&self) -> bool {
-        self.think.unwrap_or_default()
-    }
-
-    fn get_reasoning_effort(&self) -> Option<chat_bot_common::Gpt5ReasoningEffort> {
-        let value = self.reasoning_effort.as_deref()?;
-        chat_bot_common::Gpt5ReasoningEffort::try_from_str(value)
-    }
-
-    fn get_verbosity(&self) -> Option<chat_bot_common::Gpt5Verbosity> {
-        let value = self.verbosity.as_deref()?;
-        chat_bot_common::Gpt5Verbosity::try_from_str(value)
-    }
-}
- */
