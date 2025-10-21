@@ -44,8 +44,6 @@ pub struct SummaryAgentMyNoSqlEntity {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub mcp_label: Option<String>,
 
-    #[serde(default)]
-    pub llm_model: ChatBotLlmModel,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub llm_settings: Option<LlmGeneralSettings>,
 }
@@ -93,7 +91,10 @@ impl SummaryAgentMyNoSqlEntity {
         if let Some(llm_settings) = self.llm_settings.clone() {
             return llm_settings;
         }
+
+        let from_partition_key = self.get_inventory_type_and_llm_model().unwrap_or_default();
         LlmGeneralSettings {
+            llm_model_id: from_partition_key.1.unwrap_or_default(),
             temperature: self.temperature,
             top_p: self.top_p,
             n: self.n,

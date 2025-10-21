@@ -1,7 +1,9 @@
+use chat_bot_common::llm_model_type::ChatBotLlmModel;
 use serde::*;
 
 #[derive(Serialize, Deserialize, Debug, Clone, Default)]
 pub struct LlmGeneralSettings {
+    pub llm_model_id: ChatBotLlmModel,
     pub temperature: Option<f64>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub top_p: Option<f64>,

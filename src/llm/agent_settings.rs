@@ -42,14 +42,8 @@ pub struct AgentSettingsMyNoSqlEntity {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub mcp_label: Option<String>,
 
-    #[serde(default)]
-    pub text_llm_model: ChatBotLlmModel,
-
     #[serde(skip_serializing_if = "Option::is_none")]
     pub text_settings: Option<LlmGeneralSettings>,
-
-    #[serde(default)]
-    pub voice_llm_model: ChatBotLlmModel,
 
     #[serde(skip_serializing_if = "Option::is_none")]
     pub voice_settings: Option<LlmGeneralSettings>,
@@ -103,7 +97,10 @@ impl AgentSettingsMyNoSqlEntity {
         if let Some(result) = self.text_settings.clone() {
             return result;
         }
+
+        let from_partition_key = self.get_from_partition_key();
         LlmGeneralSettings {
+            llm_model_id: from_partition_key.1.unwrap_or_default(),
             temperature: self.temperature,
             top_p: self.top_p,
             n: self.n,
