@@ -48,7 +48,10 @@ pub struct SummaryAgentMyNoSqlEntity {
     pub mcp_label: Option<String>,
 
     #[serde(default)]
-    pub llm_settings: HashMap<Language, LlmGeneralSettings>,
+    pub summary_llm_settings: HashMap<Language, LlmGeneralSettings>,
+
+    #[serde(default)]
+    pub tech_summary_llm_settings: HashMap<Language, LlmGeneralSettings>,
 }
 
 impl SummaryAgentMyNoSqlEntity {
