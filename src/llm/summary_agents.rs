@@ -45,7 +45,7 @@ pub struct SummaryAgentMyNoSqlEntity {
     pub mcp_label: Option<String>,
 
     #[serde(default)]
-    pub llm_mode: ChatBotLlmModel,
+    pub llm_model: ChatBotLlmModel,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub llm_settings: Option<LlmGeneralSettings>,
 }
