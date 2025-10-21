@@ -42,24 +42,41 @@ pub struct AgentSettingsMyNoSqlEntity {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub mcp_label: Option<String>,
 
+    #[serde(default)]
+    pub text_llm_model: ChatBotLlmModel,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub text_settings: Option<LlmGeneralSettings>,
+
+    #[serde(default)]
+    pub voice_llm_model: ChatBotLlmModel,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub voice_settings: Option<LlmGeneralSettings>,
+
     pub who: String,
 }
 
 impl AgentSettingsMyNoSqlEntity {
-    pub fn get_from_partition_key(&self) -> (InventoryType, ChatBotLlmModel) {
+    pub fn get_from_partition_key(&self) -> (InventoryType, Option<ChatBotLlmModel>) {
         let mut split = self.partition_key.split('|');
 
         let inventory_type = split.next().unwrap_or_default();
-        let llm_model = split.next().unwrap_or_default();
+        let llm_model = split.next();
+
+        let llm_model = match llm_model {
+            Some(llm_model) => Some(ChatBotLlmModel::try_from_str(llm_model).unwrap_or_default()),
+            None => None,
+        };
 
         let inventory_type =
             inventory_type::InventoryType::try_from_str(inventory_type).unwrap_or_default();
-        let llm_model = ChatBotLlmModel::try_from_str(llm_model).unwrap_or_default();
+
         (inventory_type, llm_model)
     }
 
-    pub fn generate_partition_key(inventory_type: InventoryType, model: ChatBotLlmModel) -> String {
-        format!("{}|{}", inventory_type.as_str(), model.as_str())
+    pub fn generate_partition_key(inventory_type: InventoryType) -> String {
+        format!("{}", inventory_type.as_str())
     }
 
     pub fn generate_row_key(id: &str) -> &str {
