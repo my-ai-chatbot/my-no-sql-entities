@@ -6,23 +6,36 @@ service_sdk::macros::use_my_no_sql_entity!();
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct TenantMyNoSqlEntity {
     pub domains: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub languages: Option<Vec<String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub default_language: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub voice_enabled: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub system_prompt_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub summary_system_prompt_id: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub translations_profile: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub inventory_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub stt_profile: Option<String>,
     pub enabled: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub llm_model: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub summary_llm_model: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub app_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub dynamic_content: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub authorized_paths: Option<Vec<String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub summary_every_round_trip: Option<usize>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub request_trim_history_round_trip: Option<usize>,
 }
 
