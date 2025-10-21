@@ -43,6 +43,11 @@ pub struct SummaryAgentMyNoSqlEntity {
     pub prompt_version: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub mcp_label: Option<String>,
+
+    #[serde(default)]
+    pub llm_mode: ChatBotLlmModel,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub llm_settings: Option<LlmGeneralSettings>,
 }
 
 impl SummaryAgentMyNoSqlEntity {
@@ -59,7 +64,7 @@ impl SummaryAgentMyNoSqlEntity {
 
     pub fn get_inventory_type_and_llm_model(
         &self,
-    ) -> Result<(InventoryType, ChatBotLlmModel), String> {
+    ) -> Result<(InventoryType, Option<ChatBotLlmModel>), String> {
         let mut parts = self.partition_key.split('|');
         let inventory_type = match InventoryType::try_from_str(parts.next().unwrap()) {
             Some(inventory_type) => inventory_type,
@@ -71,14 +76,13 @@ impl SummaryAgentMyNoSqlEntity {
             }
         };
 
-        let llm_model = match ChatBotLlmModel::try_from_str(parts.next().unwrap()) {
-            Some(llm_model) => llm_model,
-            None => {
-                return Err(format!(
-                    "Invalid LlmModel type in partition key: {}",
-                    self.partition_key
-                ));
+        let llm_model = if let Some(part) = parts.next() {
+            match ChatBotLlmModel::try_from_str(part) {
+                Some(llm_model) => Some(llm_model),
+                None => Some(ChatBotLlmModel::default()),
             }
+        } else {
+            None
         };
 
         Ok((inventory_type, llm_model))
