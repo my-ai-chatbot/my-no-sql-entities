@@ -99,7 +99,10 @@ impl AgentSettingsMyNoSqlEntity {
         result
     }
 
-    pub fn get_llm_settings(&self) -> LlmGeneralSettings {
+    pub fn get_text_llm_settings(&self) -> LlmGeneralSettings {
+        if let Some(result) = self.text_settings.clone() {
+            return result;
+        }
         LlmGeneralSettings {
             temperature: self.temperature,
             top_p: self.top_p,

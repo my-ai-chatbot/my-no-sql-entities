@@ -93,6 +93,9 @@ impl SummaryAgentMyNoSqlEntity {
     }
 
     pub fn get_llm_settings(&self) -> LlmGeneralSettings {
+        if let Some(llm_settings) = self.llm_settings.clone() {
+            return llm_settings;
+        }
         LlmGeneralSettings {
             temperature: self.temperature,
             top_p: self.top_p,
