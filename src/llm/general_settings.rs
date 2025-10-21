@@ -28,6 +28,8 @@ pub struct LlmGeneralSettings {
     pub prompt_text: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub mcp_label: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub mcp_url: Option<String>,
 }
 
 /*
