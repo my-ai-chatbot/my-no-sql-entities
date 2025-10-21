@@ -16,8 +16,11 @@ service_sdk::macros::use_my_no_sql_entity!();
 #[my_no_sql_entity("summary-agents")]
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct SummaryAgentMyNoSqlEntity {
-    pub tech_prompts: HashMap<String, String>,
-    pub prompts: HashMap<String, String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tech_prompts: Option<HashMap<String, String>>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub prompts: Option<HashMap<String, String>>,
 
     pub temperature: Option<f64>,
     #[serde(skip_serializing_if = "Option::is_none")]

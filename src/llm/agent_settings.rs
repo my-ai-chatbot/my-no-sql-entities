@@ -15,10 +15,11 @@ service_sdk::macros::use_my_no_sql_entity!();
 #[my_no_sql_entity("agents-settings")]
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct AgentSettingsMyNoSqlEntity {
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub prompts: Option<HashMap<String, String>>,
-
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub prompts_voice: Option<HashMap<String, String>>,
-
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub temperature: Option<f64>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub top_p: Option<f64>,
@@ -29,7 +30,7 @@ pub struct AgentSettingsMyNoSqlEntity {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub frequency_penalty: Option<f64>,
     pub last_edited: i64,
-
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub think: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub verbosity: Option<String>,
@@ -45,9 +46,9 @@ pub struct AgentSettingsMyNoSqlEntity {
 
     #[serde(default)]
     pub text_settings: HashMap<Language, LlmGeneralSettings>,
-
+    #[serde(default)]
     pub voice_settings: HashMap<Language, LlmGeneralSettings>,
-
+    #[serde(default)]
     pub who: String,
 }
 
