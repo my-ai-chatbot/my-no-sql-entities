@@ -93,7 +93,7 @@ impl AgentSettingsMyNoSqlEntity {
         result
     }
 
-    pub fn get_text_llm_settings(&self) -> LlmGeneralSettings {
+    pub fn get_legacy_ext_llm_settings(&self, prompt: Option<String>) -> LlmGeneralSettings {
         let from_partition_key = self.get_from_partition_key();
         LlmGeneralSettings {
             llm_model_id: from_partition_key.1.unwrap_or_default(),
@@ -114,6 +114,7 @@ impl AgentSettingsMyNoSqlEntity {
             mcp_label: self.mcp_label.clone(),
             prompt_id: self.prompt_id.clone(),
             prompt_version: self.prompt_version.clone(),
+            prompt_text: prompt,
         }
     }
 }

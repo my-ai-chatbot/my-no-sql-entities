@@ -25,6 +25,8 @@ pub struct LlmGeneralSettings {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub prompt_version: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub prompt_text: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub mcp_label: Option<String>,
 }
 

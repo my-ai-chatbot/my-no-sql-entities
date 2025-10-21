@@ -87,7 +87,7 @@ impl SummaryAgentMyNoSqlEntity {
         &self.row_key
     }
 
-    pub fn get_llm_settings(&self) -> LlmGeneralSettings {
+    pub fn get_lefacy_prompt_settings(&self, prompt: Option<String>) -> LlmGeneralSettings {
         let from_partition_key = self.get_inventory_type_and_llm_model().unwrap_or_default();
         LlmGeneralSettings {
             llm_model_id: from_partition_key.1.unwrap_or_default(),
@@ -108,6 +108,7 @@ impl SummaryAgentMyNoSqlEntity {
             mcp_label: self.mcp_label.clone(),
             prompt_id: self.prompt_id.clone(),
             prompt_version: self.prompt_version.clone(),
+            prompt_text: prompt,
         }
     }
 }
