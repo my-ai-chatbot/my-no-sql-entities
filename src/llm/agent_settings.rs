@@ -69,8 +69,8 @@ impl AgentSettingsMyNoSqlEntity {
         (inventory_type, llm_model)
     }
 
-    pub fn generate_partition_key(inventory_type: InventoryType) -> String {
-        inventory_type.to_string()
+    pub fn generate_partition_key(inventory_type: InventoryType) -> &'static str {
+        inventory_type.as_str()
     }
 
     pub fn generate_row_key(id: &str) -> &str {
