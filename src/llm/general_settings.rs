@@ -17,6 +17,13 @@ pub struct LlmGeneralSettings {
     pub verbosity: Option<chat_bot_common::Gpt5Verbosity>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub reasoning_effort: Option<chat_bot_common::Gpt5ReasoningEffort>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub prompt_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub prompt_version: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub mcp_label: Option<String>,
 }
 
 /*

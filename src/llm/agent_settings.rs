@@ -98,6 +98,9 @@ impl AgentSettingsMyNoSqlEntity {
                 Some(value) => Gpt5ReasoningEffort::try_from_str(value),
                 None => None,
             },
+            mcp_label: self.mcp_label.clone(),
+            prompt_id: self.prompt_id.clone(),
+            prompt_version: self.prompt_version.clone(),
         }
     }
 }

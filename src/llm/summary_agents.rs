@@ -36,6 +36,13 @@ pub struct SummaryAgentMyNoSqlEntity {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub reasoning_effort: Option<String>,
     pub who: String,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub prompt_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub prompt_version: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub mcp_label: Option<String>,
 }
 
 impl SummaryAgentMyNoSqlEntity {
@@ -97,6 +104,9 @@ impl SummaryAgentMyNoSqlEntity {
                 Some(value) => Gpt5ReasoningEffort::try_from_str(value),
                 None => None,
             },
+            mcp_label: self.mcp_label.clone(),
+            prompt_id: self.prompt_id.clone(),
+            prompt_version: self.prompt_version.clone(),
         }
     }
 }
