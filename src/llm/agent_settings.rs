@@ -3,6 +3,7 @@ use std::collections::HashMap;
 use chat_bot_common::{
     Gpt5ReasoningEffort, Gpt5Verbosity,
     inventory_type::{self, InventoryType},
+    languages::Language,
     llm_model_type::ChatBotLlmModel,
 };
 use serde::*;
@@ -42,11 +43,10 @@ pub struct AgentSettingsMyNoSqlEntity {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub mcp_label: Option<String>,
 
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub text_settings: Option<LlmGeneralSettings>,
+    #[serde(default)]
+    pub text_settings: HashMap<Language, LlmGeneralSettings>,
 
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub voice_settings: Option<LlmGeneralSettings>,
+    pub voice_settings: HashMap<Language, LlmGeneralSettings>,
 
     pub who: String,
 }
@@ -94,10 +94,6 @@ impl AgentSettingsMyNoSqlEntity {
     }
 
     pub fn get_text_llm_settings(&self) -> LlmGeneralSettings {
-        if let Some(result) = self.text_settings.clone() {
-            return result;
-        }
-
         let from_partition_key = self.get_from_partition_key();
         LlmGeneralSettings {
             llm_model_id: from_partition_key.1.unwrap_or_default(),

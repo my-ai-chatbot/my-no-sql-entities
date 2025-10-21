@@ -6,7 +6,7 @@
 
 use std::collections::HashMap;
 
-use chat_bot_common::{inventory_type::InventoryType, llm_model_type::*, *};
+use chat_bot_common::{inventory_type::InventoryType, languages::Language, llm_model_type::*, *};
 use serde::*;
 
 use super::LlmGeneralSettings;
@@ -44,8 +44,8 @@ pub struct SummaryAgentMyNoSqlEntity {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub mcp_label: Option<String>,
 
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub llm_settings: Option<LlmGeneralSettings>,
+    #[serde(default)]
+    pub llm_settings: HashMap<Language, LlmGeneralSettings>,
 }
 
 impl SummaryAgentMyNoSqlEntity {
@@ -88,10 +88,6 @@ impl SummaryAgentMyNoSqlEntity {
     }
 
     pub fn get_llm_settings(&self) -> LlmGeneralSettings {
-        if let Some(llm_settings) = self.llm_settings.clone() {
-            return llm_settings;
-        }
-
         let from_partition_key = self.get_inventory_type_and_llm_model().unwrap_or_default();
         LlmGeneralSettings {
             llm_model_id: from_partition_key.1.unwrap_or_default(),
