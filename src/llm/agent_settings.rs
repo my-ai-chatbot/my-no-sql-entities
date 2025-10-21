@@ -15,32 +15,44 @@ service_sdk::macros::use_my_no_sql_entity!();
 #[my_no_sql_entity("agents-settings")]
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct AgentSettingsMyNoSqlEntity {
+    #[deprecated(note = "Delete me at some point")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub prompts: Option<HashMap<String, String>>,
+    #[deprecated(note = "Delete me at some point")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub prompts_voice: Option<HashMap<String, String>>,
+    #[deprecated(note = "Delete me at some point")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub temperature: Option<f64>,
+    #[deprecated(note = "Delete me at some point")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub top_p: Option<f64>,
+    #[deprecated(note = "Delete me at some point")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub n: Option<i64>,
+    #[deprecated(note = "Delete me at some point")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub presence_penalty: Option<f64>,
+    #[deprecated(note = "Delete me at some point")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub frequency_penalty: Option<f64>,
     pub last_edited: i64,
+    #[deprecated(note = "Delete me at some point")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub think: Option<bool>,
+    #[deprecated(note = "Delete me at some point")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub verbosity: Option<String>,
+    #[deprecated(note = "Delete me at some point")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub reasoning_effort: Option<String>,
-
+    #[deprecated(note = "Delete me at some point")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub prompt_id: Option<String>,
+    #[deprecated(note = "Delete me at some point")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub prompt_version: Option<String>,
+    #[deprecated(note = "Delete me at some point")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub mcp_label: Option<String>,
 
