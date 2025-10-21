@@ -128,6 +128,7 @@ impl SummaryAgentMyNoSqlEntity {
             prompt_id: self.prompt_id.clone(),
             prompt_version: self.prompt_version.clone(),
             prompt_text: prompt,
+            mcp_url: None,
         }
     }
 }
