@@ -37,6 +37,9 @@ pub struct TenantMyNoSqlEntity {
     pub summary_every_round_trip: Option<usize>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub request_trim_history_round_trip: Option<usize>,
+
+    #[serde(default)]
+    pub white_listed_countries: Vec<String>,
 }
 
 impl TenantMyNoSqlEntity {
