@@ -40,6 +40,9 @@ pub struct TenantMyNoSqlEntity {
 
     #[serde(default)]
     pub white_listed_countries: Vec<String>,
+
+    #[serde(default)]
+    pub ip_white_list: Vec<String>,
 }
 
 impl TenantMyNoSqlEntity {
