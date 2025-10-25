@@ -6,7 +6,7 @@
 
 use std::collections::HashMap;
 
-use chat_bot_common::{inventory_type::InventoryType, languages::Language, llm_model_type::*, *};
+use chat_bot_common::{inventory_type::InventoryType, languages::Language, llm_model_type::*};
 use serde::*;
 
 use super::LlmGeneralSettings;
@@ -16,49 +16,10 @@ service_sdk::macros::use_my_no_sql_entity!();
 #[my_no_sql_entity("summary-agents")]
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct SummaryAgentMyNoSqlEntity {
-    #[deprecated(note = "Delete me at some point")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub tech_prompts: Option<HashMap<String, String>>,
-
-    #[deprecated(note = "Delete me at some point")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub prompts: Option<HashMap<String, String>>,
-
-    #[deprecated(note = "Delete me at some point")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub temperature: Option<f64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    #[deprecated(note = "Delete me at some point")]
-    pub top_p: Option<f64>,
-    #[deprecated(note = "Delete me at some point")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub n: Option<i64>,
-    #[deprecated(note = "Delete me at some point")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub presence_penalty: Option<f64>,
-    #[deprecated(note = "Delete me at some point")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub frequency_penalty: Option<f64>,
+    #[serde(default)]
     pub last_edited: i64,
-    #[deprecated(note = "Delete me at some point")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub think: Option<bool>,
-    #[deprecated(note = "Delete me at some point")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub verbosity: Option<String>,
-    #[deprecated(note = "Delete me at some point")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub reasoning_effort: Option<String>,
+    #[serde(default)]
     pub who: String,
-    #[deprecated(note = "Delete me at some point")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub prompt_id: Option<String>,
-    #[deprecated(note = "Delete me at some point")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub prompt_version: Option<String>,
-    #[deprecated(note = "Delete me at some point")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub mcp_label: Option<String>,
 
     #[serde(default)]
     pub summary_llm_settings: HashMap<Language, LlmGeneralSettings>,
@@ -104,32 +65,6 @@ impl SummaryAgentMyNoSqlEntity {
 
     pub fn get_prompt_id(&self) -> &str {
         &self.row_key
-    }
-
-    pub fn get_lefacy_prompt_settings(&self, prompt: Option<String>) -> LlmGeneralSettings {
-        let from_partition_key = self.get_inventory_type_and_llm_model().unwrap_or_default();
-        LlmGeneralSettings {
-            llm_model_id: from_partition_key.1.unwrap_or_default(),
-            temperature: self.temperature,
-            top_p: self.top_p,
-            n: self.n,
-            presence_penalty: self.presence_penalty,
-            frequency_penalty: self.frequency_penalty,
-            think: self.think,
-            verbosity: match self.verbosity.as_deref() {
-                Some(value) => Gpt5Verbosity::try_from_str(value),
-                None => None,
-            },
-            reasoning_effort: match self.reasoning_effort.as_deref() {
-                Some(value) => Gpt5ReasoningEffort::try_from_str(value),
-                None => None,
-            },
-            mcp_label: self.mcp_label.clone(),
-            prompt_id: self.prompt_id.clone(),
-            prompt_version: self.prompt_version.clone(),
-            prompt_text: prompt,
-            mcp_url: None,
-        }
     }
 }
 
