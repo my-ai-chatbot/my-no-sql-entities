@@ -3,7 +3,8 @@ use serde::*;
 
 #[derive(Serialize, Deserialize, Debug, Clone, Default)]
 pub struct LlmGeneralSettings {
-    pub llm_model_id: ChatBotLlmModel,
+    //Added as string - to make sure - we do not recompile chat-bot-api - since it does not use it but need it
+    pub llm_model_id: String,
     pub temperature: Option<f64>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub top_p: Option<f64>,
@@ -30,6 +31,22 @@ pub struct LlmGeneralSettings {
     pub mcp_label: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub mcp_url: Option<String>,
+}
+
+impl LlmGeneralSettings {
+    pub fn get_llm_id(&self) -> ChatBotLlmModel {
+        if let Some(llm_model) = ChatBotLlmModel::try_from_str(&self.llm_model_id) {
+            return llm_model;
+        }
+
+        for itm in ChatBotLlmModel::ALL {
+            if format!("{:?}", itm) == self.llm_model_id {
+                return *itm;
+            }
+        }
+
+        ChatBotLlmModel::default()
+    }
 }
 
 /*
