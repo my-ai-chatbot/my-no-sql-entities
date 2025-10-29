@@ -4,6 +4,7 @@ use serde::*;
 #[derive(Serialize, Deserialize, Debug, Clone, Default)]
 pub struct LlmGeneralSettings {
     //Added as string - to make sure - we do not recompile chat-bot-api - since it does not use it but need it
+    #[serde(default)]
     pub llm_model_id: String,
     pub temperature: Option<f64>,
     #[serde(skip_serializing_if = "Option::is_none")]
