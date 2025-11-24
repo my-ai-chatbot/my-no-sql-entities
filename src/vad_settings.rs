@@ -16,3 +16,17 @@ impl VadSettingsMyNoSqlEntity {
     pub const PARTITION_KEY: &'static str = "vs";
     pub const ROW_KEY: &'static str = "global";
 }
+
+impl Default for VadSettingsMyNoSqlEntity {
+    fn default() -> Self {
+        Self {
+            partition_key: Self::PARTITION_KEY.to_string(),
+            row_key: Self::ROW_KEY.to_string(),
+            time_stamp: Default::default(),
+            frame_size: 512,
+            threshold: 0.2,
+            min_speech_duration_ms: 250,
+            speech_pad_ms: 1000,
+        }
+    }
+}
