@@ -7,7 +7,7 @@ service_sdk::macros::use_my_no_sql_entity!();
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct VadSettingsMyNoSqlEntity {
     pub frame_size: usize,
-    pub silero_threshold: f32,
+    pub threshold: f32,
     pub min_speech_duration_ms: usize,
     pub speech_pad_ms: usize,
 }
