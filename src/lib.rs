@@ -25,3 +25,5 @@ pub use badges::*;
 mod chat_tests;
 pub use chat_tests::*;
 pub mod llm;
+mod vad_settings;
+pub use vad_settings::*;
