@@ -1,3 +1,4 @@
+use chat_bot_common::*;
 use serde::*;
 
 service_sdk::macros::use_my_no_sql_entity!();
@@ -43,6 +44,9 @@ pub struct TenantMyNoSqlEntity {
 
     #[serde(default)]
     pub ip_white_list: Vec<String>,
+
+    #[serde(default)]
+    pub tts_route: TtsOption,
 }
 
 impl TenantMyNoSqlEntity {
