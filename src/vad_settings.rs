@@ -19,7 +19,7 @@ impl VadSettingsMyNoSqlEntity {
 
     pub const ROW_KEY: &'static str = "global";
 
-    fn get_lang_id(&self) -> &str {
+    pub fn get_lang_id(&self) -> &str {
         &self.row_key
     }
 }
