@@ -20,8 +20,8 @@ impl VadSettingsMyNoSqlEntity {
 
     pub const ROW_KEY: &'static str = "global";
 
-    pub fn get_lang_id(&self) -> &str {
-        &self.row_key
+    pub fn get_lang(&self) -> Language {
+        Language::from_str(&self.row_key)
     }
 
     pub fn generate_row_key(lang: Language) -> &'static str {
