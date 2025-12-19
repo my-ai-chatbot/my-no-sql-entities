@@ -1,3 +1,4 @@
+use chat_bot_common::languages::Language;
 //Delete me at some point of time
 use serde::*;
 
@@ -21,6 +22,10 @@ impl VadSettingsMyNoSqlEntity {
 
     pub fn get_lang_id(&self) -> &str {
         &self.row_key
+    }
+
+    pub fn generate_row_key(lang: Language) -> &'static str {
+        lang.as_str()
     }
 }
 
