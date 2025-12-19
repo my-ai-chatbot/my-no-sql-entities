@@ -12,7 +12,7 @@ pub struct VadSettingsMyNoSqlEntity {
     pub min_speech_duration_ms: usize,
     pub speech_pad_ms: usize,
 
-    pub silence_millis: usize,
+    pub silence_millis: Option<usize>,
 }
 
 impl VadSettingsMyNoSqlEntity {
@@ -20,12 +20,18 @@ impl VadSettingsMyNoSqlEntity {
 
     pub const ROW_KEY: &'static str = "global";
 
+    pub const DEFAULT_SILENCE_MS: usize = 1000;
+
     pub fn get_lang(&self) -> Language {
         Language::from_str(&self.row_key)
     }
 
     pub fn generate_row_key(lang: Language) -> &'static str {
         lang.as_str()
+    }
+
+    pub fn get_silence_ms(&self) -> usize {
+        self.silence_millis.unwrap_or(Self::DEFAULT_SILENCE_MS)
     }
 }
 
@@ -39,7 +45,7 @@ impl Default for VadSettingsMyNoSqlEntity {
             threshold: 0.2,
             min_speech_duration_ms: 250,
             speech_pad_ms: 1000,
-            silence_millis: 1000,
+            silence_millis: Some(1000),
         }
     }
 }
