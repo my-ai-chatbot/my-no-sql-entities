@@ -11,4 +11,4 @@ service-sdk = { tag = "0.4.2", git = "https://github.com/MyJetTools/service-sdk.
 
 serde = { version = "*", features = ["derive"] }
 
-chat-bot-common = { git = "https://github.com/my-ai-chatbot/chat-bot-common.git", tag = "0.1.0" }
+chat-bot-common = { git = "https://github.com/my-ai-chatbot/chat-bot-common.git", tag = "0.1.1" }
